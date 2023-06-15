@@ -59,6 +59,15 @@ describe("Test the todos endpoints", () => {
 
     expect(response.statusCode).toBe(200);
   });
+
+  test("It should delete a todo", async () => {
+    const todo = new Todo({ title: "gym", description: "jog" });
+    await todo.save();
+
+    const response = await request(app).delete(`/todos/${todo._id}`);
+    expect(response.statusCode).toBe(200);
+    expect(response.body._id).toEqual(todo._id.toString());
+  });
 });
 describe("Test the todos endpoints for edge cases", () => {
   test("It should not create a todo", async () => {
@@ -90,5 +99,13 @@ describe("Test the todos endpoints for edge cases", () => {
 
     expect(response.statusCode).toBe(404);
     expect(response.body.message).toEqual("No todo to update");
+  });
+
+  test("It should not delete a todo", async () => {
+    const randomId = new mongoose.Types.ObjectId();
+
+    const response = await request(app).delete(`todos/${randomId}`);
+
+    expect(response.statusCode).toBe(404);
   });
 });
