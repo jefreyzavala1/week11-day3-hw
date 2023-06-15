@@ -48,20 +48,38 @@ function fibonacci(num) {
   } else return fibonacci(num - 1) + fibonacci(num - 2);
 }
 
-function coinFlips(num) {
+function coinFlips(num, str = "", arr = []) {
   // This function returns an array of all possible outcomes from flipping a coin N times.
   // Input type: Integer
   // For example, coinFlips(2) would return the following:
   // ["HH", "HT", "TH", "TT"]
   // H stands for Heads and T stands for tails
   // Represent the two outcomes of each flip as "H" or "T"
+
+  if (num === 0) {
+    arr.push(str);
+    return arr;
+  }
+
+  coinFlips(num - 1, str + "H", arr);
+  coinFlips(num - 1, str + "T", arr);
+  return arr;
 }
 
-function letterCombinations() {
+function letterCombinations(arr, str = "", index = 0) {
   // This function returns an array of all combinations of the given letters
   // Input type: Array of single characters
   // For example, letterCombinations(["a","b","c"]) would return the following:
   // ["a","b","c","ab","ac","ba","bc","ca","cb","abc","acb","bac","bca","cab","cba"]
+  if (index === arr.length) {
+    arr.push(str);
+    return arr;
+  }
+
+  for (let i = 0; i < arr.length; i++) {
+    letterCombinations(arr, str + arr[i]);
+  }
+  return arr;
 }
 
 module.exports = {
