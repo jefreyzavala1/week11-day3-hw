@@ -4,7 +4,7 @@ exports.getTodos = async (req, res) => {
   try {
     const todos = await Todo.find({});
     if (todos.length === 0) {
-      res.status(404).json({ messages: "No todos" });
+      res.status(404).json({ message: "No todos" });
     } else {
       res.json(todos);
     }
@@ -31,7 +31,7 @@ exports.getTodo = async (req, res) => {
   try {
     const todo = await Todo.findOne({ _id: req.params.id });
     if (!todo) {
-      res.status(404).json({ message: "No todo" });
+      throw new Error("No todo to update");
     } else {
       res.json(todo);
     }
