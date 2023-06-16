@@ -10,3 +10,5 @@ scenarios:
           json:
             title: "Gym"
             description: "Pull ups"
+      - get:
+         url: "/todos"

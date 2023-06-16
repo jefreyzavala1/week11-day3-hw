@@ -20,5 +20,6 @@ The todo API allows a user to create, update, and delete a todo. To design the A
 <h2>Testing</h2>
 <h3>Jest & Supertest: run <b>npm run test</b></h3>
 <p>I used Jest and Supertest to test my API, ensuring high performance and appropriate error handling. The tests include various scenarios, such as testing edge cases. For example, I checked what happens if a user doesn't input a title field, tries to delete something that is not their own todo, or encounters issues retrieving the wrong todo from the database. The code ensures that these situations are handled properly.</p>
-<h2>Load test</h2>
-<h3>Artillery: run </h3>
+<h3>Load test</h3>
+<h3>Artillery: run <b>npm run load</b></h3>
+<p>I used Artillery to test the API's ability to handle a high throughput, specifically for a duration of 60 seconds with a rate of 20 requests per second. During the test, it was observed that the response time was relatively fast, and all requests received successful responses</p>
