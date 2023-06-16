@@ -18,6 +18,7 @@ exports.createTodo = async (req, res) => {
     if (!req.body.title) {
       throw new Error("Title is required");
     }
+
     const todo = new Todo(req.body);
     await todo.save();
     res.json(todo);
@@ -59,7 +60,7 @@ exports.deleteTodo = async (req, res) => {
   try {
     const deletedTodo = await Todo.findOneAndRemove({ _id: req.params.id });
     if (!deletedTodo) {
-      res.status(404).json({ message: "No todo" });
+      res.status(404).json({ message: "No todo to delete" });
     } else {
       res.json(deletedTodo);
     }
