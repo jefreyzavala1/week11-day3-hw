@@ -36,16 +36,29 @@ function factorial(num) {
   // This function returns the factorial of a given number.
   if (num <= 1) {
     return 1;
-  } else return num * factorial(num - 1);
+  }
+  return num * factorial(num - 1);
 }
 
-function fibonacci(num) {
-  // This function returns the Nth number in the fibonacci sequence.
-  // https://en.wikipedia.org/wiki/Fibonacci_number
-  // For this function, the first two fibonacci numbers are 1 and 1
-  if (num < 2) {
-    return 1;
-  } else return fibonacci(num - 1) + fibonacci(num - 2);
+  function fibonacci(num,first = 1,second = 1,answer = 2,nth=3) {
+  // This function returns the factorial of a given number.
+  //1 1 2 3 5 8 13
+  //0 1 2 3 4 5 6 
+  if(num <=1){
+    return 1
+  }
+  if(num==2){
+    return 2
+  }
+  if(nth===num){
+    return answer;
+  }
+  
+  first = second;
+  second = answer;
+  answer = first + second;
+  
+  return fibonacci(num,first,second,answer,nth + 1)
 }
 
 function coinFlips(num, str = "", arr = []) {
